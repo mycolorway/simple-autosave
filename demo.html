@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Autosave Demo</title>
+  <meta charset="utf-8"/>
+  <script src="vendor/bower/jquery/dist/jquery.js"></script>
+  <script src="vendor/bower/simple-module/lib/module.js"></script>
+  <script src="lib/autosave.js"></script>
+</head>
+
+<body>
+<style>
+  .wrapper {
+    margin: 0 auto;
+    width: 900px;
+  }
+</style>
+<div class="wrapper">
+  <h1>Simple Autosave Demo</h1>
+  <p>Type and refresh</p>
+  <input type="text" name="test" data-autosave/>
+  <textarea name="test2" id="test" cols="30" rows="10"></textarea>
+  <p id="message"></p>
+</div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    simple.autosave();
+    var test2 = simple.autosave({
+      el: '#test'
+    });
+
+    test2.on('autosavesuccess', function(){
+      $('#message').html('Textarea saved at ' + Date.now());
+    });
+  });
+</script>
+</body>
+</html>
+
+

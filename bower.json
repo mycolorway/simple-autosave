@@ -1,0 +1,31 @@
+{
+  "name": "simple-autosave",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mycolorway/simple-autosave",
+  "authors": [
+    "lcjnil <emlcjnil@gmail.com>"
+  ],
+  "description": "A autosave web module based on Simple Module",
+  "main": "lib/autosave.js",
+  "keywords": [
+    "autosave"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "spec",
+    "node_modules",
+    "vendor",
+    "Gemfile",
+    "Gemfile.lock",
+    "Gruntfile.coffee",
+    "package.json",
+    "README.md",
+    "umd.hbs"
+  ],
+  "dependencies": {
+    "jquery": "2.x",
+    "simple-module": "2.x"
+  }
+}
+

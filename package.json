@@ -1,0 +1,24 @@
+{
+  "name": "simple-autosave",
+  "version": "0.1.0",
+  "description": "A autosave web module based on Simple Module",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mycolorway/simple-autosave.git"
+  },
+  "author": "lcjnil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mycolorway/simple-autosave/issues"
+  },
+  "homepage": "https://github.com/mycolorway/simple-autosave",
+  "devDependencies": {
+    "grunt": "0.x",
+    "grunt-contrib-watch": "0.x",
+    "grunt-contrib-coffee": "0.x",
+    "grunt-contrib-sass": "0.x",
+    "grunt-contrib-jasmine": "0.x",
+    "grunt-umd": "2.x"
+  }
+}
+
