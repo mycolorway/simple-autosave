@@ -21,7 +21,7 @@
     return it("should save data when selector is specified", function() {
       var autosave, data, el;
       autosave = simple.autosave({
-        el: '.testClas'
+        el: '.testCls'
       });
       el = $('.testCls');
       data = 'test String2';

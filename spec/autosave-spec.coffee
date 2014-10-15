@@ -21,7 +21,7 @@ describe "init method", ->
     expect(localStorage.getItem 'autosave:test').toBe(data)
 
   it "should save data when selector is specified", ->
-    autosave = simple.autosave({el: '.testClas'})
+    autosave = simple.autosave({el: '.testCls'})
 
     el = $('.testCls')
     data = 'test String2'
@@ -67,3 +67,4 @@ describe 'destroy', ->
 
     $('.testCls').val('test again').trigger 'keyup'
     expect(localStorage.getItem 'autosave:test').toBe('this is the test string')
+

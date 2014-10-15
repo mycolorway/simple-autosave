@@ -35,29 +35,29 @@ simple.autosave({
 
 __el__
 
-需要自动保存的元素的选择器，默认为'[data-autosave]'，选择的对象必须有name属性
+需要自动保存的元素的选择器，默认为'[data-autosave]'，选择的对象**必须**有name属性
   
-__local__
+__sessionStorage__
 
-Boolean，是否保存在localStorage，否则保存在sessionStorage
+Boolean，是否保存在sessionStorage，默认为false
 
 
 #### 方法
 
 `clear()` 清除已经保存的数据
 
-`destroy()` 取消自动保存的数据绑定
+`destroy()` 取消自动保存
 
 #### 事件
 
-__autosavesuccess__ 
+__save__ 
 
 自动保存成功
 
-__autosaveerror__ 
+__error__ 
 
 自动保存失败
 
-__autosaveremovesuccess__
+__clear__
 
 移除保存的数据成功

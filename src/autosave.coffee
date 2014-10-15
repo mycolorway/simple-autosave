@@ -1,25 +1,22 @@
-#TODO: add limit words
-#TODO: add type error for element except input&textarea
 class AutoSave extends SimpleModule
   opts:
     el: ""
-    local: true
+    sessionStorage: false
 
   _init: ->
     @opts.el = "[data-autosave]" unless @opts.el
     @fields = $(@opts.el)
-    @storage = if @opts.local then localStorage else sessionStorage
+    return unless @fields.length
+    @storage = if @opts.sessionStorage then sessionStorage else localStorage
 
-    @_render()
-    @_bind()
-
-
-  _render: ->
+    #use data saved before
     @fields.each (index, field) =>
       field = $(field)
       field.data 'key', 'autosave:' + field.attr('name')
       if @getStorage field.data('key')
         field.val @getStorage field.data('key')
+
+    @_bind()
 
   _bind: ->
     @fields.each (index, field) =>
@@ -27,9 +24,9 @@ class AutoSave extends SimpleModule
       field.on 'keyup.autosave', =>
         try
           @setStorage field.data('key'), field.val()
-          @trigger 'autosavesuccess'
+          @trigger 'save'
         catch e
-          @trigger 'autosaveerror'
+          @trigger 'error'
 
   _unbind: ->
     @fields.each (index, field) =>
@@ -40,7 +37,7 @@ class AutoSave extends SimpleModule
     @fields.each (index, field) =>
       field = $(field)
       @removeStorage field.data('key')
-      @trigger "autosaveremovesuccess"
+      @trigger "clear"
 
   destroy: ->
     @_unbind()
