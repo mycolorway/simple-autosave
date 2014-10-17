@@ -16,7 +16,7 @@
       data = 'test String';
       el.val(data);
       el.trigger('keyup');
-      return expect(localStorage.getItem('autosave:test')).toBe(data);
+      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBe(data);
     });
     return it("should save data when selector is specified", function() {
       var autosave, data, el;
@@ -27,7 +27,7 @@
       data = 'test String2';
       el.val(data);
       el.trigger('keyup');
-      return expect(localStorage.getItem('autosave:test')).toBe(data);
+      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBe(data);
     });
   });
 
@@ -35,7 +35,7 @@
     var inputTpl;
     inputTpl = '<input class="testCls" data-autosave name="test"/>';
     beforeEach(function() {
-      localStorage.setItem('autosave:test', 'this is the test string');
+      localStorage.setItem('autosave:' + simple.url().pathname + ':test', 'this is the test string');
       return $(inputTpl).appendTo("body");
     });
     afterEach(function() {
@@ -50,7 +50,7 @@
       var autosave;
       autosave = simple.autosave();
       autosave.clear();
-      return expect(localStorage.getItem('autosave:test')).toBeNull();
+      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBeNull();
     });
   });
 
@@ -58,7 +58,7 @@
     var inputTpl;
     inputTpl = '<input class="testCls" data-autosave name="test"/>';
     beforeEach(function() {
-      localStorage.setItem('autosave:test', 'this is the test string');
+      localStorage.setItem('autosave:' + simple.url().pathname + ':test', 'this is the test string');
       return $(inputTpl).appendTo("body");
     });
     afterEach(function() {
@@ -70,7 +70,7 @@
       autosave = simple.autosave();
       autosave.destroy();
       $('.testCls').val('test again').trigger('keyup');
-      return expect(localStorage.getItem('autosave:test')).toBe('this is the test string');
+      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBe('this is the test string');
     });
   });
 

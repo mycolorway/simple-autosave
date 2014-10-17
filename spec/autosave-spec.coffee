@@ -18,7 +18,7 @@ describe "init method", ->
     el.val data
     el.trigger 'keyup'
 
-    expect(localStorage.getItem 'autosave:test').toBe(data)
+    expect(localStorage.getItem 'autosave:' + simple.url().pathname + ':test').toBe(data)
 
   it "should save data when selector is specified", ->
     autosave = simple.autosave({el: '.testCls'})
@@ -28,14 +28,14 @@ describe "init method", ->
     el.val data
     el.trigger 'keyup'
 
-    expect(localStorage.getItem 'autosave:test').toBe(data)
+    expect(localStorage.getItem 'autosave:' + simple.url().pathname + ':test').toBe(data)
 
 describe 'init render and clear', ->
   inputTpl = '''
     <input class="testCls" data-autosave name="test"/>
   '''
   beforeEach ->
-    localStorage.setItem 'autosave:test', 'this is the test string'
+    localStorage.setItem 'autosave:' + simple.url().pathname + ':test', 'this is the test string'
     $(inputTpl).appendTo("body")
   afterEach ->
     localStorage.removeItem 'autosave:test'
@@ -48,14 +48,14 @@ describe 'init render and clear', ->
   it 'should remove data when clear method called', ->
     autosave = simple.autosave()
     autosave.clear()
-    expect(localStorage.getItem 'autosave:test').toBeNull()
+    expect(localStorage.getItem 'autosave:' + simple.url().pathname + ':test').toBeNull()
 
 describe 'destroy', ->
   inputTpl = '''
     <input class="testCls" data-autosave name="test"/>
   '''
   beforeEach ->
-    localStorage.setItem 'autosave:test', 'this is the test string'
+    localStorage.setItem 'autosave:' + simple.url().pathname + ':test', 'this is the test string'
     $(inputTpl).appendTo("body")
   afterEach ->
     localStorage.removeItem 'autosave:test'
@@ -66,5 +66,5 @@ describe 'destroy', ->
     autosave.destroy()
 
     $('.testCls').val('test again').trigger 'keyup'
-    expect(localStorage.getItem 'autosave:test').toBe('this is the test string')
+    expect(localStorage.getItem 'autosave:' + simple.url().pathname + ':test').toBe('this is the test string')
 

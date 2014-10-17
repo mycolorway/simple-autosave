@@ -9,10 +9,11 @@ class AutoSave extends SimpleModule
     return unless @fields.length
     @storage = if @opts.sessionStorage then sessionStorage else localStorage
 
+    url = simple.url()
     #use data saved before
     @fields.each (index, field) =>
       field = $(field)
-      field.data 'key', 'autosave:' + field.attr('name')
+      field.data 'key', 'autosave:' + url.pathname + ':' + field.attr('name')
       if @getStorage field.data('key')
         field.val @getStorage field.data('key')
 
