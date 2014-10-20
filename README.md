@@ -33,9 +33,11 @@ simple.autosave({
 
 ####初始化选项
 
+初始化的时候，会初始化保存的路径，如果该元素有data-autosave属性，那么将会用其值加上'/autosave/'保存（兼容mcw.autosave），否则保存路径为url.pathname + this.attr('name') + '/autosave/'
+
 __el__
 
-需要自动保存的元素的选择器，默认为'[data-autosave]'，选择的对象**必须**有name属性
+需要自动保存的元素的选择器，默认为'[data-autosave]'
   
 __sessionStorage__
 

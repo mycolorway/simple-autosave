@@ -22,11 +22,11 @@ module.exports = (grunt) ->
         objectToExport: 'autosave'
         globalAlias: 'autosave'
         deps:
-          'default': ['$', 'SimpleModule']
-          amd: ['jquery', 'simple-module']
-          cjs: ['jquery', 'simple-module']
+          'default': ['$', 'SimpleModule', 'simpleUrl']
+          amd: ['jquery', 'simple-module', 'simple-url']
+          cjs: ['jquery', 'simple-module', 'simple-url']
           global:
-            items: ['jQuery', 'SimpleModule']
+            items: ['jQuery', 'SimpleModule', 'simple.url']
             prefix: ''
 
     watch:

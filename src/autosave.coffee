@@ -1,10 +1,9 @@
 class AutoSave extends SimpleModule
   opts:
-    el: ""
+    el: '[data-autosave]'
     sessionStorage: false
 
   _init: ->
-    @opts.el = "[data-autosave]" unless @opts.el
     @fields = $(@opts.el)
     return unless @fields.length
     @storage = if @opts.sessionStorage then sessionStorage else localStorage
@@ -13,9 +12,12 @@ class AutoSave extends SimpleModule
     #use data saved before
     @fields.each (index, field) =>
       field = $(field)
-      field.data 'key', 'autosave:' + url.pathname + ':' + field.attr('name')
-      if @getStorage field.data('key')
-        field.val @getStorage field.data('key')
+      if field.data 'autosave'
+        field.data 'autosave:key', field.data('autosave') + '/autosave/'
+      else
+        field.data 'autosave:key', url.pathname + ':' + field.attr('name') + '/autosave/'
+      if @getStorage field.data('autosave:key')
+        field.val @getStorage field.data('autosave:key')
 
     @_bind()
 
@@ -24,10 +26,10 @@ class AutoSave extends SimpleModule
       field = $(field)
       field.on 'keyup.autosave', =>
         try
-          @setStorage field.data('key'), field.val()
-          @trigger 'save'
+          @setStorage field.data('autosave:key'), field.val()
+          @triggerHandler 'save', @
         catch e
-          @trigger 'error'
+          @triggerHandler 'error', @
 
   _unbind: ->
     @fields.each (index, field) =>
@@ -37,8 +39,8 @@ class AutoSave extends SimpleModule
   clear: ->
     @fields.each (index, field) =>
       field = $(field)
-      @removeStorage field.data('key')
-      @trigger "clear"
+      @removeStorage field.data('autosave:key')
+    @triggerHandler 'clear', @
 
   destroy: ->
     @_unbind()

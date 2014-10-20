@@ -6,7 +6,7 @@
       return $(inputTpl).appendTo("body");
     });
     afterEach(function() {
-      localStorage.removeItem('autosave:test');
+      localStorage.removeItem(simple.url().pathname + ':test/autosave/');
       return $('.testCLs').remove();
     });
     it("should save data when keyup event happend", function() {
@@ -16,7 +16,7 @@
       data = 'test String';
       el.val(data);
       el.trigger('keyup');
-      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBe(data);
+      return expect(localStorage.getItem(simple.url().pathname + ':test/autosave/')).toBe(data);
     });
     return it("should save data when selector is specified", function() {
       var autosave, data, el;
@@ -27,7 +27,7 @@
       data = 'test String2';
       el.val(data);
       el.trigger('keyup');
-      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBe(data);
+      return expect(localStorage.getItem(simple.url().pathname + ':test/autosave/')).toBe(data);
     });
   });
 
@@ -35,11 +35,11 @@
     var inputTpl;
     inputTpl = '<input class="testCls" data-autosave name="test"/>';
     beforeEach(function() {
-      localStorage.setItem('autosave:' + simple.url().pathname + ':test', 'this is the test string');
+      localStorage.setItem(simple.url().pathname + ':test/autosave/', 'this is the test string');
       return $(inputTpl).appendTo("body");
     });
     afterEach(function() {
-      localStorage.removeItem('autosave:test');
+      localStorage.removeItem(simple.url().pathname + ':test/autosave/');
       return $('.testCls').remove();
     });
     it('should init data, when data\'s been saved', function() {
@@ -50,7 +50,7 @@
       var autosave;
       autosave = simple.autosave();
       autosave.clear();
-      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBeNull();
+      return expect(localStorage.getItem(simple.url().pathname + ':test/autosave/')).toBeNull();
     });
   });
 
@@ -58,19 +58,15 @@
     var inputTpl;
     inputTpl = '<input class="testCls" data-autosave name="test"/>';
     beforeEach(function() {
-      localStorage.setItem('autosave:' + simple.url().pathname + ':test', 'this is the test string');
+      localStorage.setItem(simple.url().pathname + ':test/autosave/', 'this is the test string');
       return $(inputTpl).appendTo("body");
-    });
-    afterEach(function() {
-      localStorage.removeItem('autosave:test');
-      return $('.testCls').remove();
     });
     return it('should stop autosaving when call destroy', function() {
       var autosave;
       autosave = simple.autosave();
       autosave.destroy();
       $('.testCls').val('test again').trigger('keyup');
-      return expect(localStorage.getItem('autosave:' + simple.url().pathname + ':test')).toBe('this is the test string');
+      return expect(localStorage.getItem(simple.url().pathname + ':test/autosave/')).toBe('this is the test string');
     });
   });
 
