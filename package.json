@@ -2,6 +2,7 @@
   "name": "simple-autosave",
   "version": "1.0.0",
   "description": "A autosave web module based on Simple Module",
+  "main": "lib/autosave.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:mycolorway/simple-autosave.git"
